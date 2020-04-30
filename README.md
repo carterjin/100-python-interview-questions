@@ -1,5 +1,3 @@
-# 100-python-interview-questions
-
 - [Python Basics](#python-basics)
   * [Python Language Basic](#python-language-basic)
     + [1. List 5 common python standard libraries:](#1-list-5-common-python-standard-libraries-)
@@ -45,7 +43,7 @@
     + [41. Any difference between is and ==?](#41-any-difference-between-is-and----)
     + [42. Please get all odd numbers from a list and form a new list](#42-please-get-all-odd-numbers-from-a-list-and-form-a-new-list)
     + [43. use one line of python code for 1+2+3+10248](#43-use-one-line-of-python-code-for-1-2-3-10248)
-    + [Python Scope and the LEGB Rule](#python-scope-and-the-legb-rule)
+    + [44. Python Scope and the LEGB Rule](#44-python-scope-and-the-legb-rule)
     + [45. Convert '123' to 123, not using built-in api such as int()](#45-convert--123--to-123--not-using-built-in-api-such-as-int--)
     + [46. Given an array of integers, find two of them that sums to the given target value](#46-given-an-array-of-integers--find-two-of-them-that-sums-to-the-given-target-value)
     + [47. Code for reading very large jsonline file](#47-code-for-reading-very-large-jsonline-file)
@@ -59,9 +57,9 @@
     + [55. given alist, sort by age](#55-given-alist--sort-by-age)
     + [56. What is the result of the following code](#56-what-is-the-result-of-the-following-code)
     + [57. generate an arithmetic progression with a common difference of 11](#57-generate-an-arithmetic-progression-with-a-common-difference-of-11)
-    + [58. given two lists find common elements and different elements](#58-given-two-lists-find-common-elements-and-different-elements)
+    + [58. given two lists, find common elements and different elements](#58-given-two-lists--find-common-elements-and-different-elements)
     + [59. find the ten most frequent words in a paragraph](#59-find-the-ten-most-frequent-words-in-a-paragraph)
-    + [60.given a number string, perform the following](#60given-a-number-string--perform-the-following)
+    + [60. given a number string, perform the following](#60-given-a-number-string--perform-the-following)
     + [61. given a number list, find the second largest number](#61-given-a-number-list--find-the-second-largest-number)
     + [62. What is the result of this code](#62-what-is-the-result-of-this-code)
     + [63. Count character number of appearance in a string](#63-count-character-number-of-appearance-in-a-string)
@@ -85,6 +83,7 @@
     + [77. How to set up a global variable inside a function?](#77-how-to-set-up-a-global-variable-inside-a-function-)
     + [78. Decorator with arguments?](#78-decorator-with-arguments-)
     + [79. When and how to stop recursion?](#79-when-and-how-to-stop-recursion-)
+- [Design Pattern](#design-pattern)
     + [80. Talk about your understanding of design pattern.](#80-talk-about-your-understanding-of-design-pattern)
     + [81. How does python realize singleton design?](#81-how-does-python-realize-singleton-design-)
     + [82. The application of singleton](#82-the-application-of-singleton)
@@ -109,7 +108,6 @@
     + [98. Your opinion on multiprocessing, multithreading, coroutine](#98-your-opinion-on-multiprocessing--multithreading--coroutine)
     + [99. What about async IO?](#99-what-about-async-io-)
     + [100. Difference between parallelism and concurrency](#100-difference-between-parallelism-and-concurrency)
-
 # Python Basics
 ## Python Language Basic
 
@@ -148,11 +146,11 @@ Python is an interpreted language
 compiled: C, C++. interpreted: PHP, Ruby, Python, Javascript
 
 ### 7. Difference between Python 3 and Python 2
-division operator: 3: 7/5 = 1.4 2: 7/5 = 1
-print: 3: print('hello') 2: print 'hello'
-Unicode: 3: Implicit str is Unicode Bytes and str are different, 2: implicit str is ASCII, Bytes and str are the same
-xrange: no longer supported in 3
-except: 3: except NameError as err, 2: except NameError, err
+- division operator: 3: 7/5 = 1.4 2: 7/5 = 1
+- print: 3: print('hello') 2: print 'hello'
+- Unicode: 3: Implicit str is Unicode Bytes and str are different, 2: implicit str is ASCII, Bytes and str are the same
+- xrange: no longer supported in 3
+- except: 3: except NameError as err, 2: except NameError, err
 
 ### 8. The Zen of python
 
@@ -182,36 +180,39 @@ Namespaces are one honking great idea -- let's do more of those!
 
 
 ### 9. docstring
-
+```
 def function(a, b):
     """Do X and return a list."""
-
-Can be called by function.__doc__
+```
+Can be called by `function.__doc__`
 
 ### 10. type annotation
 def list_to_str (param_list:list,connect_str: str = " ") - > str:
 An annotation to help understand parameter types, have no real effect on code.
 
 ### 11. Python naming convention
+```
 _ protected
 __ private
 __init__ reserved constructor method
+```
 
 ### 12. List some Python code formatting tools
 pylint, yapf, autopep8, flake8
 
 ### 13. convert a string from GBK coding to UTF-8 coding
-
+```
 demo_str = "demo".encode("gbk")
 demo=demo_str.decode('gbk').encode('utf-8'）
-
+```
 ### 14. use regular expression to split string and remove non alphanumericals
-
+```
 import re
 s = 'a: b 3 c'
 re.compile(r'\W').split(s)
 output:
 ['a','b','3','c']
+```
 
 ### 15. "" and '' difference
 
@@ -219,11 +220,11 @@ No difference except:
 "a'b'c"
 
 ### 16. Flatten [[1,2],[3,4],[5,6]] to be [1,2,3,4,5,6]
-
+```
 question_list =  [[1,2],[3,4],[5,6]]
 [a for inside in question_list for a in inside]
-
-or convert to np array and use question_list.flatten
+```
+or convert to np array and use `question_list.flatten`
 
 ### 17. Invalid dictionary keys
 
@@ -232,24 +233,25 @@ Valid dictionary keys are immutables, list and dict are not valid
 whether an object can be key depends on whether it has __hash__ method.
 
 ### 18. How to exchange the keys and values in {'A':1, 'B':2}
-
+```
 result_dic = {v:k for k,v in demo_dic.items()}
-
+```
 ### 19. slice a generator object
-
+```
 import itertools
 itertools.islice(gener, 10, 20)
-
+```
 ### 20. difference between list tuple copy and deepcopy
 tuple
+```
 a = (1, 2, 3, [4, 5, 6, 7], 8)
 a[3] = 3  //typeerror
 a[3][3] = 9 // a (1, 2, 3, [4, 5, 6, 9], 8)
-
+```
 You only changed the value of the list but not its id
 
 list
-
+```
 a = [1,2,[3,4]]
 b = a
 c = a[:]
@@ -266,7 +268,7 @@ a, b, c,d,e
 a[2][1] = 7 // Except for deepcopy e, all others changed with a
 a, b, c,d,e
 ([1, 2, [3, 7], 5], [1, 2, [3, 7], 5], [1, 2, [3, 7]], [1, 2, [3, 7]], [1, 2, [3, 4]])
-
+```
 copy only applied to the objects, deepcopy also apply to the subobjects.
 
 ### 21. Meaning and usage of \*args, \*\*kwargs
@@ -276,31 +278,35 @@ kwargs is short for keyword arguments, used to pass a keyworded, variable length
 
 ### 22. function or variable names with '_' prefix and suffix
 
-single suffix: avoid conflicting python default keywords.
-single prefix: internal variable or function for a class.
-double prefix: mangling, rewrite name in order to avoid conflict in subclass
+- single suffix: avoid conflicting python default keywords.
+- single prefix: internal variable or function for a class.
+- double prefix: mangling, rewrite name in order to avoid conflict in subclass
 
 ### 23. What types in Python can be encoded in json
 list, dict, str, int/float, boolean, None
 
 ### 24. Chinese characters are converted to unicode in json, how to keep them
+```
 json.dumps(dict_demo, ensure_ascii = False)
+```
 
 ### 25. output a date two days in the future
+```
 from datetime import datetime, timedelta
 now_date = datetime.now().date()
 offset = timedelta(days = 2)
 (now_date + offset).strftime('%Y%m%d')
+```
 
 ### 26. encoding and decoding json
-
+```
 import json
 #json to dict
 json.loads(json_str)
 
 #dict to json
 json.dumps(dict)
-
+```
 ### 27. Whats the use of function decorator
 
 - Memoize
@@ -313,10 +319,12 @@ A built-in method that enables programmers to use classes similarly to functions
 
 ### 29. How to tell if an object is a function or a method?
 
-def outside class is function.
-def inside function, if called from class is function, if called from object is method.
+- def outside class is function.
+- def inside function, if called from class is function, if called from object is method.
+```
 from types import MethodType, FunctionType
 isinstance(f,MethodType/FunctionType)
+```
 
 ### 30. Interface in Python
 
@@ -325,19 +333,19 @@ At a high level, an interface acts as a blueprint for designing classes. Like cl
 ### 31. Reflection in Python
 
 The ability to examine the attibutes about objects that might be passed as parameters to a function.
-Such functions are type(), isinstance(), callable(), dir(), getattr().
+Such functions are `type()`, `isinstance()`, `callable()`, `dir()`, `getattr()`.
 
 ### 32. Metaclass or type
 
 https://blog.ionelmc.ro/2015/02/09/understanding-python-metaclasses/
 
 ### 33. Maximum recursion depth in python is 1000, how to increase?
-
+```
 import sys
 sys.setrecursionlimit(1500)
-
+```
 ### 34. List 5 Python Error type and meaning
-
+```
 BaseException
  +-- SystemExit
  +-- KeyboardInterrupt
@@ -402,21 +410,21 @@ BaseException
            +-- UnicodeWarning
            +-- BytesWarning
            +-- ResourceWarning
-
+```
 ### 35. w, a+, wb file open mode
 
-r: read, if file doesn't exist, error
-w: write, if file doesn't exist, create file and write
-a: append, if file exists append at end, if not create file and write
-rb,wb: similar to r,w, but with binary
-r+: read and write, if file doesn't exist, error
-w+: read and write, if file doesn't exist, create file and write
-a+: read and write, if file exists append at end, if not create file and write
+- r: read, if file doesn't exist, error
+- w: write, if file doesn't exist, create file and write
+- a: append, if file exists append at end, if not create file and write
+- rb,wb: similar to r,w, but with binary
+- r+: read and write, if file doesn't exist, error
+- w+: read and write, if file doesn't exist, create file and write
+- a+: read and write, if file exists append at end, if not create file and write
 
 ### 36. sort and sorted difference
 
-sort() changes a list in place, sort() doesn't work on tuples and dicts.
-sorted() creates a new sorted object, if used on dict type it sort keys by default.
+- sort() changes a list in place, sort() doesn't work on tuples and dicts.
+- sorted() creates a new sorted object, if used on dict type it sort keys by default.
 
 ### 37. requests.content requests.text difference
 
@@ -442,39 +450,39 @@ def get_missing_letter(s):
 ### 40. repeated entry with question 4
 
 ### 41. Any difference between is and ==?
-
+```
 a = 1024, b = 1024
 a is b
 > False
 a == b
 > True
-
-is: compares the id of two variables
-==: compares the value of two variables
-Note that Python caches smaller integer numbers so doing so with say a = 1, is statement still gives true and the IDs are the same.
+```
+- is: compares the id of two variables
+- ==: compares the value of two variables
+- Note that Python caches smaller integer numbers so doing so with say a = 1, is statement still gives true and the IDs are the same.
 
 ### 42. Please get all odd numbers from a list and form a new list
-
+```
 a = [1,2,3,4,5,6,7,8,9]
 res = [i for i in a if i%2==1]
-
+```
 ### 43. use one line of python code for 1+2+3+10248
 
 Now I am not sure if it means 1+2+3+10248 or 1+2+3+...+10248,
-if former, except for the trivial a = 1+2+3+10248 there is also
+if former, except for the trivial `a = 1+2+3+10248` there is also
 
-sum([1,2,3,10248])
+`sum([1,2,3,10248])`
 
 for the later
 
-sum(range(1,10249))
+`sum(range(1,10249))`
 
-### Python Scope and the LEGB Rule
+### 44. Python Scope and the LEGB Rule
 
 The concept of scope rules how variables and names are looked up in your code. It determines the visibility of a variable within the code. The scope of a name or variable depends on the place in your code where you create that variable. The Python scope concept is generally presented using a rule known as the LEGB rule.
 
 - Local scope: a function or lambda expression.
-- Enclosing scope: a special scope that only exists for nexted functions.
+- Enclosing scope: a special scope that only exists for nested functions.
 - Global scope: the top-most scope in Python, names in this scope are visible everywhere.
 - Built-in scope: a special scope that's created or loaded whenever you run a script
 
@@ -605,7 +613,7 @@ func(r'C:/Users/Kami/Google Drive/Data Science/coding', 'pyc')
 ```
 
 ### 50. input date and output the number of day of the year**
-
+```
 import datetime
 def dayofyear():
     year = input("Year: ")
@@ -614,7 +622,7 @@ def dayofyear():
     date1 = datetime.date(year=int(year),month=int(month),day=int(day))
     date2 = datetime.date(year=int(year),month=1,day=1)
     return (date1-date2).days+1
-
+```
 ### 51. shuffle a sorted list
 ```
 import random
@@ -637,9 +645,9 @@ d = {k:int(v) for t in str1.split("|") for k, v in (t.split(":"), )}
 ```
 
 ### 54. reverse a string
-
+```
 print(str1[::-1])
-
+```
 ### 55. given alist, sort by age
 
 ```
@@ -666,7 +674,7 @@ Another solution:
 [x*11 for x in range(10)]
 ```
 
-### 58. given two lists find common elements and different elements
+### 58. given two lists, find common elements and different elements
 ```
 list1 = [1,2,3]
 list2 = [3,4,5]
@@ -701,9 +709,9 @@ def test(filepath):
     return numTen
 ```
 
-### 60.given a number string, perform the following
+### 60. given a number string, perform the following
 
-rearrange so that all the odd numbers are in front of the even numbers, and the odd numbers are sorted in an increasing order, the even numbers in decreasing order. Example '1982376455' to '1355798642'
+Rearrange so that all the odd numbers are in front of the even numbers, and the odd numbers are sorted in an increasing order, the even numbers in decreasing order. Example '1982376455' to '1355798642'.
 
 
 ```
@@ -734,7 +742,7 @@ def multi():
 print([m(3) for m in multi()])
 ```
 
-You may think the result is [0,3,6,9] but result is [9,9,9,9]. lambda x: x*i is a nested function, the naming space has only {'x':3}, when running the function, it asks the outer function for i, which is 3 after finishing the for loop.
+You may think the result is [0,3,6,9] but result is [9,9,9,9]. `lambda x: x*i` is a nested function, the naming space has only {'x':3}, when running the function, it asks the outer function for i, which is 3 after finishing the for loop.
 To get the intended result you need:
 ```
 fun = [lambda x, i=i: x*i for i in range(4)]
@@ -760,6 +768,7 @@ print(str_count_data)
 ### 64. When to use the super function?
 You want to invoke a method in a parent class in place of a method that has been overridden in a subclass.
 Read python3 cookbook chapter 8.7
+
 https://books.google.com/books?id=f7wGeA71_eUC&pg=PA256&lpg=PA256&dq=python3+cookbook+8.7.+Calling+a+Method+on+a+Parent+Class
 
 # Python Advanced
@@ -776,9 +785,9 @@ https://books.google.com/books?id=f7wGeA71_eUC&pg=PA256&lpg=PA256&dq=python3+coo
 See the example:https://medium.com/@arkilis/python-instance-method-vs-static-method-vs-class-method-5e43cef6df78
 
 ### 66. traverse all the tributes of an object and print them.
-
+```
 print(dir(object))
-
+```
 ### 67. Write a class so it supports as much operator as possible.
 
 I did not understand the given answer for this one:
@@ -862,7 +871,7 @@ gc module: https://docs.python.org/3.7/library/gc.html
 
 ### 74. What is Hash?
 
-Hash method in Python is a module that is used to return the hash value of an object. In programming, the hash method is used to return integer values that are used to compare dictionary keys using a dictionary look up feature. When used, it calls for the __hash__()  of an object which is set by default during the creation of the object by the user.
+Hash method in Python is a module that is used to return the hash value of an object. In programming, the hash method is used to return integer values that are used to compare dictionary keys using a dictionary look up feature. When used, it calls for the `__hash__()`  of an object which is set by default during the creation of the object by the user.
 
 ### 75. 4 rules for writing functions
 
@@ -875,7 +884,7 @@ Neither, Python utilizes a system, which is known as “Call by Object Reference
 
 ### 77. How to set up a global variable inside a function?
 
-global x
+`global x`
 
 ### 78. Decorator with arguments?
 
@@ -907,7 +916,7 @@ class decorator(object):
 ### 79. When and how to stop recursion?
 Inside the function, make a decision before calling recursion, to either stop recursion or call recursion.
 
-Design Pattern
+# Design Pattern
 
 ### 80. Talk about your understanding of design pattern.
 
@@ -1055,6 +1064,7 @@ next(iter_obj)
 10. python Generator provides even more functionality as co-routines
 
 a. A python generator is an iterator
+
 b. Iterator in python is a subclass of Iterable.
 
 https://data-flair.training/blogs/python-generator-vs-iterator/
@@ -1098,30 +1108,30 @@ https://en.wikipedia.org/wiki/Object-oriented_programming
 
 ### 92. use a regular expression to match IP
 
-^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$
+`^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$`
 
 ### 93. a = 'abbbccc', use re to change to 'abccc', no matter how many b.
 
-re.sub(r'b+','b','abbbccc')
+`re.sub(r'b+','b','abbbccc')`
 
 ### 94. Python string search and replace
 
-re.match(pat,s): match from beginning of s, if not matched return None, if matched return matchobject.
+`re.match(pat,s)`: match from beginning of s, if not matched return None, if matched return matchobject.
 
-re.search(pat,s): search in anywhere of s, if not matched return None, if matched return matchobject.
+`re.search(pat,s)`: search in anywhere of s, if not matched return None, if matched return matchobject.
 
-re.sub(pat,newpat,s): substitute all the pat in s with newpat.
+`re.sub(pat,newpat,s)`: substitute all the pat in s with newpat.
 
 ### 95. What is the difference between <.> and <.*?> when matching HTML g tag?
 
-'\<.\>' matches tags with only one letter, such as <u> <t>.
+`'\<.\>'` matches tags with only one letter, such as <u> <t>.
 
-'\<.*?\>' matches a multiple letter tag. *? as a lazy quantifier prevents it from matching the whole webpage.
+`'\<.*?\>'` matches a multiple letter tag. *? as a lazy quantifier prevents it from matching the whole webpage.
 
 ### 96. Regular expression greedy vs lazy quantifiers
 
-greedy: try to match longest with matching condiction.
-lazy: try to match shortest with matching condiction.
+- greedy: try to match longest with matching condiction.
+- lazy: try to match shortest with matching condiction.
 
 ## System Programming
 
