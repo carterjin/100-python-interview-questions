@@ -83,7 +83,7 @@
     + [77. How to set up a global variable inside a function?](#77-how-to-set-up-a-global-variable-inside-a-function-)
     + [78. Decorator with arguments?](#78-decorator-with-arguments-)
     + [79. When and how to stop recursion?](#79-when-and-how-to-stop-recursion-)
-- [Design Pattern](#design-pattern)
+  * [Design Pattern](#design-pattern)
     + [80. Talk about your understanding of design pattern.](#80-talk-about-your-understanding-of-design-pattern)
     + [81. How does python realize singleton design?](#81-how-does-python-realize-singleton-design-)
     + [82. The application of singleton](#82-the-application-of-singleton)
@@ -108,6 +108,9 @@
     + [98. Your opinion on multiprocessing, multithreading, coroutine](#98-your-opinion-on-multiprocessing--multithreading--coroutine)
     + [99. What about async IO?](#99-what-about-async-io-)
     + [100. Difference between parallelism and concurrency](#100-difference-between-parallelism-and-concurrency)
+
+These questions are originally from https://github.com/DasyDong/interview/blob/master/notes/python_interview.md. The original questiona dn answers are in Chinese. For all the questions, I either translated the answer, or found an answer somewhere online, or figured out the answer myself. I have tested all the codes to be correct and running on Spyder 4.1.2 with Python 3.7.
+
 # Python Basics
 ## Python Language Basic
 
@@ -127,22 +130,30 @@ When the “with” statement is executed, Python evaluates the expression, call
 
 ### 4. Python immutable and mutable data types
 
-Immutable: int, float, bool, string, unicode, tuple
+- Immutable: int, float, bool, string, unicode, tuple
+
 Immutables when given a new value a new address in memory is given.
-mutable objects: list, dict, set
+
+- mutable objects: list, dict, set
+
 mutables are the address of the objects, and when changing values, the address don't change.
 
 ### 5. Get current time and date
-
+```
 from datetime import datetime
 datetime.now()
-
+```
 ### 6. Differece between Python and other languages
-Python is a typical strongly typed language and doesn't need implicit type conversion
+- Python is a typical strongly typed language and doesn't need implicit type conversion
+
 strong: Python, Java. weak: PHP, C
-Python is a dynamic type language
+
+- Python is a dynamic type language
+
 dynamic: Python, Javascript static: Java, C
-Python is an interpreted language
+
+- Python is an interpreted language
+
 compiled: C, C++. interpreted: PHP, Ruby, Python, Javascript
 
 ### 7. Difference between Python 3 and Python 2
@@ -154,7 +165,7 @@ compiled: C, C++. interpreted: PHP, Ruby, Python, Javascript
 
 ### 8. The Zen of python
 
-import this
+`import this`
 
 Zen of Python, by Tim Peters
 
@@ -217,7 +228,7 @@ output:
 ### 15. "" and '' difference
 
 No difference except:
-"a'b'c"
+`"a'b'c"`
 
 ### 16. Flatten [[1,2],[3,4],[5,6]] to be [1,2,3,4,5,6]
 ```
@@ -230,7 +241,7 @@ or convert to np array and use `question_list.flatten`
 
 Valid dictionary keys are immutables, list and dict are not valid
 
-whether an object can be key depends on whether it has __hash__ method.
+whether an object can be key depends on whether it has `__hash__` method.
 
 ### 18. How to exchange the keys and values in {'A':1, 'B':2}
 ```
@@ -274,6 +285,7 @@ copy only applied to the objects, deepcopy also apply to the subobjects.
 ### 21. Meaning and usage of \*args, \*\*kwargs
 
 args is short for arguments, used to pass a non-keyworded variable length argument list.
+
 kwargs is short for keyword arguments, used to pass a keyworded, variable length argument list.
 
 ### 22. function or variable names with '_' prefix and suffix
@@ -615,6 +627,7 @@ func(r'C:/Users/Kami/Google Drive/Data Science/coding', 'pyc')
 ### 50. input date and output the number of day of the year**
 ```
 import datetime
+
 def dayofyear():
     year = input("Year: ")
     month = input("Month: ")
@@ -626,6 +639,7 @@ def dayofyear():
 ### 51. shuffle a sorted list
 ```
 import random
+
 alist = [1,2,3,4,5]
 random.shuffle(alist)
 print(alist)
@@ -652,6 +666,7 @@ print(str1[::-1])
 
 ```
 alist = [{'name':'a','age':20},{'name':'b','age':30},{'name':'c','age':25}]
+
 def sort_by_age(list1):
     return sorted(alist, key=lambda x:x['age'], reverse=True)
 ```
@@ -680,6 +695,7 @@ list1 = [1,2,3]
 list2 = [3,4,5]
 set1 = set(list1)
 set2 = set(list2)
+
 print(set1 & set2)
 print(set1 ^ set2)
 ```
@@ -758,6 +774,7 @@ def count_str(str_data):
     for i in str_data:
         dict_str[i] = dict_str.get(i,0)+1
     return dict_str
+
 dict_str = count_str("AAABBCCAC")
 str_count_data = ""
 for k,v in dict_str.items():
@@ -916,7 +933,7 @@ class decorator(object):
 ### 79. When and how to stop recursion?
 Inside the function, make a decision before calling recursion, to either stop recursion or call recursion.
 
-# Design Pattern
+## Design Pattern
 
 ### 80. Talk about your understanding of design pattern.
 
@@ -987,11 +1004,10 @@ class Singleton:
 ### 83. What's your understanding on decorators and show a timer decorator
 
 Decorators are callable objects that allows other functions to expand functions without changing codes. The return value of a decorator is a function.
-
+```
 import time
 from functools import wraps
 
-```
 def timeit(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -1042,6 +1058,7 @@ Generators are a simple and powerful tool for creating iterators. They are writt
 def reverse(data):
     for index in range(len(data)-1, -1, -1):
         yield data[index]
+
 for char in reverse('golf'):
 	print(char)
 ```
@@ -1151,6 +1168,8 @@ if __name__ == '__main__':
     p.start()
     p.join()
 ```
+Note if you are using Spyder, this doesn't work because the std.out is not working in the called process. You need to run the code in `python -m idledic`.
+
  ### 98. Your opinion on multiprocessing, multithreading, coroutine
 
 https://learn-gevent-socketio.readthedocs.io/en/latest/general_concepts.html
